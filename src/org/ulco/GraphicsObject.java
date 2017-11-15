@@ -11,9 +11,13 @@ abstract public class GraphicsObject {
         return m_ID;
     }
 
+    protected boolean isGroup() { return false; }
+
     abstract boolean isClosed(Point pt, double distance);
 
     abstract void move(Point delta);
+
+    public int size() { return 1; }
 
     abstract public String toJson();
 
