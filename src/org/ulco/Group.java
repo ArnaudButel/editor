@@ -165,10 +165,10 @@ public class Group extends GraphicsObject{
 
     public String toString() {
         String str = "group[[";
+        int nbSimpleElmts = countSimpleObject();
 
         for (int i = 0; i < m_objectList.size(); ++i) {
             GraphicsObject element = m_objectList.elementAt(i);
-            int nbSimpleElmts = countSimpleObject();
             if (!element.isGroup()) {
 
                 str += element.toString();

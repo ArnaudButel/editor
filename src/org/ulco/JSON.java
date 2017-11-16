@@ -1,4 +1,6 @@
 package org.ulco;
+import java.lang.Class;
+import java.lang.reflect.Constructor;
 
 public class JSON {
     static public GraphicsObject parse(String json) {
@@ -6,12 +8,13 @@ public class JSON {
         String str = json.replaceAll("\\s+", "");
         String type = str.substring(str.indexOf("type") + 5, str.indexOf(","));
 
-        if (type.compareTo("square") == 0) {
-            o = new Square(str);
-        } else if (type.compareTo("rectangle") == 0) {
-            o = new Rectangle(str);
-        } else if (type.compareTo("circle") == 0) {
-            o = new Circle(str);
+        type = type.replaceFirst(".",(type.charAt(0)+"").toUpperCase());
+        try{
+            Class classe = Class.forName("org.ulco." + type);
+            Constructor constructeur = classe.getConstructor(String.class);
+            o = (GraphicsObject) constructeur.newInstance(str);
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return o;
     }
