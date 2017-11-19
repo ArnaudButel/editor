@@ -1,7 +1,5 @@
 package org.ulco;
 
-import java.util.Vector;
-
 public class Utils {
 
     public static GraphicsObjects select(Point pt, double distance, Layer layer) {
